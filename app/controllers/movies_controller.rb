@@ -18,6 +18,18 @@ class MoviesController < ApplicationController
     #Redirect to the movies index page after saving
     redirect_to("/movies")
   end
+
+  def destroy
+    the_id = params.fetc("an_id")
+
+    matching_records = Movie.where({:id => the_id})
+
+    the_movie = matching_records.at(0)
+
+    the_movie.destroy
+
+    redirect_to("/movies")
+  end
   
   def index
     matching_movies = Movie.all
